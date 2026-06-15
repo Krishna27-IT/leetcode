@@ -35,20 +35,29 @@ int main(){
     secondB->next = thirdB;
 
     Node* result = nullptr;
+    Node* tail = nullptr;
 
     Node* pA = headA;
     Node* pB = headB;
-    int carry,sum=0;
+    int carry=0;
 
     while(pA != nullptr || pB != nullptr || carry != 0){
-        int val1 = (pA != nullptr)? pA->data : 0;
-        int val2 = (pB != nullptr)? pB->data : 0;
-        int sum = pA->data + pB->data + carry;
+        int sum = (pA != nullptr ? pA->data : 0) + (pB != nullptr ? pB->data : 0) + carry;
 
         int digit = sum % 10;
         carry = sum / 10;
 
-        Node*result = new Node(digit);
+        Node* newNode = new Node(digit);
+       if(result ==  nullptr){
+        result = newNode;
+        tail = newNode;
+       }else{
+        tail->next = newNode;
+        tail = newNode;
+       }
+
+        pA = (pA != nullptr) ? pA->next : nullptr;
+        pB = (pB != nullptr) ? pB->next : nullptr;
     }
 
     printList(result);
