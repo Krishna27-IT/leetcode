@@ -1,7 +1,9 @@
 #include<iostream>
 #include<vector>
+#include <climits>
 using namespace std;
 
+/* Brute Force
 int main(){
     int num1[] = {1,2};
     int n1 = sizeof(num1)/sizeof(num1[0]);
@@ -44,4 +46,53 @@ int main(){
     }
 
     cout<<"The Median of two Sorted Arrays : "<<mid<<endl;
+}*/
+
+// Binary Search Partition
+int main(){
+    vector<int> num1 = {1,2};
+    vector<int> num2 = {3,4};
+
+    int n1 = num1.size();
+    int n2 = num2.size();
+
+    if (num1.size() > num2.size()) {
+        swap(num1, num2);
+    }
+
+    n1 = num1.size();
+    n2 = num2.size();
+
+    int low=0;
+    int high=n1;
+    double median;
+
+    while(low <= high){
+        int partitionA = (low+high)/2;
+        int leftsize = (n1+n2+1)/2;
+        int partitionB = leftsize - partitionA;
+
+        int Aleft  = (partitionA == 0)  ? INT_MIN : num1[partitionA - 1];
+        int Aright = (partitionA == n1) ? INT_MAX : num1[partitionA];
+
+        int Bleft  = (partitionB == 0)  ? INT_MIN : num2[partitionB - 1];
+        int Bright = (partitionB == n2) ? INT_MAX : num2[partitionB];
+
+        if(Aleft <= Bright && Bleft <= Aright){
+            if((n1+n2)%2 == 0){
+                median =(max(Aleft,Bleft) + min(Aright,Bright))/2.0;
+                break;
+            }else{
+                median = max(Aleft, Bleft);
+                break;
+            }
+        }else if(Aleft > Bright){
+            high = partitionA - 1;
+        }else{
+            low = partitionA + 1;
+        }
+    }
+
+    cout<<"The Median of two Sorted Arrays : "<<median<<endl;
+    return 0;
 }
