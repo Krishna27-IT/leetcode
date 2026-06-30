@@ -51,7 +51,7 @@ int main(){
 // Binary Search Partition
 int main(){
     vector<int> num1 = {1,2};
-    vector<int> num2 = {3,4};
+    vector<int> num2 = {3,4,5};
 
     int n1 = num1.size();
     int n2 = num2.size();
