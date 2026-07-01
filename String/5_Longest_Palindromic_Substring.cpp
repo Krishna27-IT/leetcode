@@ -2,6 +2,7 @@
 #include<string>
 using namespace std;
 
+// Expand around center
 string expand(string& s, int left, int right){
     while(left>=0 && right<s.size() && s[left]==s[right]){
         left--;
