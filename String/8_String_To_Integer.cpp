@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(){
-    string s ="-21474836479";
+    string s ="   -42";
     int i=0,result=0,sign=1,digit=0;
 
     while(s[i] == ' '){
@@ -37,6 +37,6 @@ int main(){
         i++;
     }
 
-    cout<<"String To Integer: "<<result*sign;
+    cout<<"String To Integer: "<<result;
     return 0;
 }
